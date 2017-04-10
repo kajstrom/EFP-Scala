@@ -5,3 +5,4 @@ My solutions in Scala for exercises from the book [Exercises for Programmers](ht
 ## Todo
 - Exercise 25 might be useful to revise with a more advanced solution
 - Exercise 26 was skipped, the math was a bit too intensive.
+- Exercise 32: Verbal scoring.
