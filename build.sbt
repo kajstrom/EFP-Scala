@@ -9,7 +9,7 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.5.13"
 
 // Uncomment to use Akka
-//libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.4.17"
 
 
 
