@@ -28,7 +28,7 @@ object E32 extends App{
     catch {
       case nfe: NumberFormatException => {
         println("Invalid number...")
-        game.incrementGuesses()
+        game.incrementTimesGuessed()
         promptGuess(game)
       }
     }
@@ -58,7 +58,7 @@ object E32 extends App{
       }
     }
 
-    println(s"You got it in ${game.getScore} guesses!")
+    println(s"You got it in ${game.getScore} guesses! ${game.getScoreComment}")
     promptToPlayAgain()
   }
 }

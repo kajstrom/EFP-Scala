@@ -13,12 +13,12 @@ class GuessTheNumber(answerGenerator: AnswerGenerator) {
     * @return 0 for correct answer. 1 for a guess that is too high, -1 for a guess that is too low
     */
   def guess(guess: Int): Int = {
-    if (gameRunning == false) {
-      throw new RuntimeException("Game is no longer running")
-    }
+    guardAgainstFinishedGames
+    incrementTimesGuessed()
+    evaluateGuess(guess)
+  }
 
-    incrementGuesses()
-
+  private def evaluateGuess(guess: Int) = {
     if (answer == guess) {
       gameRunning = false
       0
@@ -29,8 +29,35 @@ class GuessTheNumber(answerGenerator: AnswerGenerator) {
     }
   }
 
+  private def guardAgainstFinishedGames = {
+    if (gameRunning == false) {
+      throw new RuntimeException("Game is no longer running")
+    }
+  }
+
   def getScore: Int = guesses
-  def incrementGuesses(): Unit = guesses += 1
+
+  def getScoreComment: String = {
+    guardAgainstUnfinishedGames
+
+    if (guesses == 1) {
+      "You're a mind reader!"
+    } else if (guesses >= 2 && guesses <= 3) {
+      "Most impressive."
+    } else if (guesses >= 4 && guesses <= 6) {
+      "You can do better than that."
+    } else {
+      "Better luck next time."
+    }
+  }
+
+  private def guardAgainstUnfinishedGames = {
+    if (gameRunning) {
+      throw new RuntimeException("Game is still running!")
+    }
+  }
+
+  def incrementTimesGuessed(): Unit = guesses += 1
   def isRunning: Boolean = gameRunning
 }
 
