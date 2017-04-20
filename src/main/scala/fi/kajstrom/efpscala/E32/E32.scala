@@ -28,7 +28,7 @@ object E32 extends App{
     catch {
       case nfe: NumberFormatException => {
         println("Invalid number...")
-        game.incrementTimesGuessed()
+        game.addGuess(0)
         promptGuess(game)
       }
     }
@@ -49,7 +49,13 @@ object E32 extends App{
     val game = new GuessTheNumber(RandomAnswerGenerator(difficultyLevel))
 
     while(game.isRunning) {
-      val result = game.guess(promptGuess(game))
+      val guess = promptGuess(game)
+      if (game.isAlreadyGuessed(guess)) {
+        print(s"You have already tried $guess. ")
+      }
+
+
+      val result = game.guess(guess)
 
       if (result == 1) {
         print("Too high. ")

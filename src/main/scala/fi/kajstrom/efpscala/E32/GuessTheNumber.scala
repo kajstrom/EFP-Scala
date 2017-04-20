@@ -4,7 +4,7 @@ import scala.util.Random.nextInt
 
 class GuessTheNumber(answerGenerator: AnswerGenerator) {
   private val answer = answerGenerator.generate()
-  private var guesses = 0
+  private var guesses: List[Int] = List()
   private var gameRunning = true
 
   /**
@@ -13,8 +13,8 @@ class GuessTheNumber(answerGenerator: AnswerGenerator) {
     * @return 0 for correct answer. 1 for a guess that is too high, -1 for a guess that is too low
     */
   def guess(guess: Int): Int = {
-    guardAgainstFinishedGames
-    incrementTimesGuessed()
+    guardAgainstFinishedGames()
+    addGuess(guess)
     evaluateGuess(guess)
   }
 
@@ -29,35 +29,36 @@ class GuessTheNumber(answerGenerator: AnswerGenerator) {
     }
   }
 
-  private def guardAgainstFinishedGames = {
+  private def guardAgainstFinishedGames(): Unit = {
     if (gameRunning == false) {
       throw new RuntimeException("Game is no longer running")
     }
   }
 
-  def getScore: Int = guesses
+  def getScore: Int = guesses.length
+  def isAlreadyGuessed(guess: Int): Boolean = guesses.contains(guess)
 
   def getScoreComment: String = {
-    guardAgainstUnfinishedGames
+    guardAgainstUnfinishedGames()
 
-    if (guesses == 1) {
+    if (getScore == 1) {
       "You're a mind reader!"
-    } else if (guesses >= 2 && guesses <= 3) {
+    } else if (getScore >= 2 && getScore <= 3) {
       "Most impressive."
-    } else if (guesses >= 4 && guesses <= 6) {
+    } else if (getScore >= 4 && getScore <= 6) {
       "You can do better than that."
     } else {
       "Better luck next time."
     }
   }
 
-  private def guardAgainstUnfinishedGames = {
+  private def guardAgainstUnfinishedGames() = {
     if (gameRunning) {
       throw new RuntimeException("Game is still running!")
     }
   }
 
-  def incrementTimesGuessed(): Unit = guesses += 1
+  def addGuess(guess: Int): Unit = guesses :+= guess
   def isRunning: Boolean = gameRunning
 }
 

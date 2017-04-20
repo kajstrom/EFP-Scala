@@ -76,4 +76,18 @@ class GuessTheNumberSpec extends FlatSpec with Matchers{
 
     game.getScoreComment should be ("Better luck next time.")
   }
+
+  it should "return true if number is already guessed" in {
+    val game = new GuessTheNumber(TestDoubleGenerator(5))
+    game.guess(4)
+
+    game.isAlreadyGuessed(4) should be (true)
+  }
+
+  it should "return false if the number has not been guessed" in {
+    val game = new GuessTheNumber(TestDoubleGenerator(5))
+    game.guess(4)
+
+    game.isAlreadyGuessed(0) should be(false)
+  }
 }
