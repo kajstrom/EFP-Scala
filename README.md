@@ -9,3 +9,4 @@ My solutions in Scala for exercises from the book [Exercises for Programmers](ht
 - Exercise 36: I ended up with population standard deviation by following the instructions. Perhaps something went wrong?
 - Exercise 43: Remove printlns from SiteComponents and replace with something better.
 - Exercise 44: Tests, getting a bit lazy here...
+- Utility object for file paths.
