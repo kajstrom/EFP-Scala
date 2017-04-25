@@ -1,13 +1,10 @@
 package E43
 
 import java.io.File
-import java.nio.file
 import java.nio.file.{Files, Paths, SimpleFileVisitor}
 
 import fi.kajstrom.efpscala.E43.Folder
-import org.scalatest.{BeforeAndAfter, BeforeAndAfterEach, FlatSpec, Matchers}
-
-import scala.reflect.io.Path
+import org.scalatest.{BeforeAndAfterEach, FlatSpec, Matchers}
 
 /**
   * This is not strictly a unit test as it touches the file system.
