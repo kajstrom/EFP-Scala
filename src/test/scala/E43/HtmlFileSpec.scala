@@ -3,7 +3,7 @@ package E43
 import java.io.File
 import java.nio.file.{Files, Paths}
 
-import fi.kajstrom.efpscala.E43.HtmlFile
+import fi.kajstrom.efpscala.E43.{HtmlFile, NullLogger}
 import org.scalatest.{BeforeAndAfterEach, FlatSpec, Matchers}
 
 import scala.io.Source
@@ -15,7 +15,7 @@ class HtmlFileSpec extends FlatSpec with Matchers with BeforeAndAfterEach{
   val testFile = "test.html"
 
   it should "write a file with name in title" in {
-    val hf = new HtmlFile("test", "tester", ds)
+    val hf = new HtmlFile(NullLogger, "test", "tester", ds)
     hf.writeTo(resourcesPath)
 
     val fileSource = Source.fromFile(resourcesPath + ds + testFile)
@@ -24,7 +24,7 @@ class HtmlFileSpec extends FlatSpec with Matchers with BeforeAndAfterEach{
   }
 
   it should "write a file with author name in author meta tag" in {
-    val hf = new HtmlFile("test", "tester", ds)
+    val hf = new HtmlFile(NullLogger, "test", "tester", ds)
     hf.writeTo(resourcesPath)
 
     val fileSource = Source.fromFile(resourcesPath + ds + testFile)

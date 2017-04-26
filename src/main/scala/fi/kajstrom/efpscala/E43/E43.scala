@@ -14,17 +14,17 @@ object E43 extends App {
   val jsFolder = readLine("Do you want a folder for JavaScript?").toLowerCase == "y"
   val cssFolder = readLine("Do you want a folder for CSS?").toLowerCase == "y"
 
-  val siteFolder = new Folder(siteName, ds)
+  val siteFolder = new Folder(ConsoleLogger, siteName, ds)
 
   if (jsFolder) {
-    siteFolder.addComponent(new Folder("js", ds))
+    siteFolder.addComponent(new Folder(ConsoleLogger, "js", ds))
   }
 
   if (cssFolder) {
-    siteFolder.addComponent(new Folder("css", ds))
+    siteFolder.addComponent(new Folder(ConsoleLogger, "css", ds))
   }
 
-  siteFolder.addComponent(new HtmlFile("index", author, ds))
+  siteFolder.addComponent(new HtmlFile(ConsoleLogger, "index", author, ds))
 
   siteFolder.writeTo(resources)
 }

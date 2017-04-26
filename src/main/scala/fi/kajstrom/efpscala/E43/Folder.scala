@@ -2,7 +2,7 @@ package fi.kajstrom.efpscala.E43
 
 import java.io.File
 
-class Folder(name: String, ds: String) extends SiteComponent{
+class Folder(logger: Logger, name: String, ds: String) extends SiteComponent{
   private var contents: List[SiteComponent] = List()
 
   def addComponent(component: SiteComponent) : Unit = contents :+= component
@@ -14,7 +14,7 @@ class Folder(name: String, ds: String) extends SiteComponent{
     val success = dir.mkdir()
 
     if (success) {
-      println(s"Created $folderPath")
+      logger.log(s"Created $folderPath")
       contents.foldLeft(true)((success: Boolean, component: SiteComponent) => {
         if (success) {
           component.writeTo(folderPath)

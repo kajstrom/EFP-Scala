@@ -3,7 +3,7 @@ package E43
 import java.io.File
 import java.nio.file.{Files, Paths, SimpleFileVisitor}
 
-import fi.kajstrom.efpscala.E43.Folder
+import fi.kajstrom.efpscala.E43.{Folder, NullLogger}
 import org.scalatest.{BeforeAndAfterEach, FlatSpec, Matchers}
 
 /**
@@ -17,14 +17,14 @@ class FolderSpec extends FlatSpec with Matchers with BeforeAndAfterEach {
   val testFolder = "testsite"
 
   it should "return true when target is successfully created" in {
-    val folder = new Folder(testFolder, ds)
+    val folder = new Folder(NullLogger, testFolder, ds)
 
     folder.writeTo(resourcesPath) should be(true)
     Files.exists(Paths.get(resourcesPath + ds + testFolder))
   }
 
   it should "return false when target directory already exists" in {
-    val folder = new Folder(testFolder, ds)
+    val folder = new Folder(NullLogger, testFolder, ds)
 
     folder.writeTo(resourcesPath)
     folder.writeTo(resourcesPath) should be(false)

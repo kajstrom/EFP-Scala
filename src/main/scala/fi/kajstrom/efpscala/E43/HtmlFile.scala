@@ -2,7 +2,7 @@ package fi.kajstrom.efpscala.E43
 
 import java.io.{File, PrintWriter}
 
-class HtmlFile(name: String, author: String, ds: String) extends SiteComponent{
+class HtmlFile(logger: Logger, name: String, author: String, ds: String) extends SiteComponent{
   override def writeTo(folder: String): Boolean = {
     val filePath = folder + ds + name + ".html"
     val file = new File(filePath)
@@ -12,7 +12,7 @@ class HtmlFile(name: String, author: String, ds: String) extends SiteComponent{
       pw.write(generateHtml())
       pw.close()
 
-      println(s"Created $filePath")
+      logger.log(s"Created $filePath")
       true
     } catch {
       case _: Exception => false
