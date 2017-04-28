@@ -1,17 +1,18 @@
 package fi.kajstrom.efpscala.E44
 
 import java.io.File
+
+import fi.kajstrom.efpscala.Util.FilePath
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
+
 import scala.io.Source
 
 class ProductGateway {
-  private val projectRoot = new File(".").getCanonicalPath
-  private val ds = File.separator
-  private val resources = projectRoot + ds + "resources"
+  private val productPath = FilePath.makeResourcePath("E43_products.json")
 
   private def products: List[Product] = {
-    val productJson = Source.fromFile(resources + s"${ds}E43_products.json").mkString
+    val productJson = Source.fromFile(productPath).mkString
     implicit val productReads: Reads[Product] =(
       (__ \ "name").read[String] and
       (__ \ "price").read[Double] and

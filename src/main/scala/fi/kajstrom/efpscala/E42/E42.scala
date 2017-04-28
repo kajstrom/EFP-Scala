@@ -3,12 +3,12 @@ package fi.kajstrom.efpscala.E42
 import scala.io.Source
 import java.io.File
 
-object E42 extends App{
-  val projectRoot = new File(".").getCanonicalPath
-  val ds = File.separator
-  val sourceFile = s"${ds}resources${ds}E42_in.txt"
+import fi.kajstrom.efpscala.Util.FilePath
 
-  val rows = loadFileRows(projectRoot + sourceFile)
+object E42 extends App{
+  val sourceFile = FilePath.makeResourcePath("E42_in.txt")
+
+  val rows = loadFileRows(sourceFile)
   val maxWidths = calculateColumnWidths(rows)
 
   printHeader(maxWidths)

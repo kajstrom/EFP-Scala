@@ -8,4 +8,3 @@ My solutions in Scala for exercises from the book [Exercises for Programmers](ht
 - Exercise 32: Better solution for return correct/high/low guesses. Currently integer codes. Enumeration?
 - Exercise 36: I ended up with population standard deviation by following the instructions. Perhaps something went wrong?
 - Exercise 44: Tests, getting a bit lazy here...
-- Utility object for file paths.
