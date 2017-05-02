@@ -9,7 +9,7 @@ import play.api.libs.functional.syntax._
 import scala.io.Source
 
 class ProductGateway {
-  private val productPath = FilePath.makeResourcePath("E43_products.json")
+  private val productPath = FilePath.makeResourcePath("E44_products.json")
 
   private def products: List[Product] = {
     val productJson = Source.fromFile(productPath).mkString
