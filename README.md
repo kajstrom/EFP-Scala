@@ -7,3 +7,4 @@ My solutions in Scala for exercises from the book [Exercises for Programmers](ht
 - Exercise 26 was skipped, the math was a bit too intensive.
 - Exercise 32: Better solution for return correct/high/low guesses. Currently integer codes. Enumeration?
 - Exercise 49: Creating thumbnails, showing multiple images at once, showing the search form after searching.
+- Exercise 50: Actual API calls. Rotten Tomatoes API showed my account as inactive...
