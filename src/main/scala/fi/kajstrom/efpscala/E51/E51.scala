@@ -12,15 +12,7 @@ object E51 extends App {
   val ws = AhcWSClient()
 
   val fs = new FirebaseService(ws)
+  val nc = new NotebookController(fs)
 
-  val notebook = readLine("Enter notebook name: ")
-  val note = readLine("Enter note to save: ")
-
-  val success = fs.addNote(notebook, note)
-
-  if (success) {
-    println("Your note was saved.")
-    ws.close()
-    system.terminate()
-  }
+  nc.console()
 }
