@@ -19,6 +19,11 @@ class InventoryService {
     persistInventory()
   }
 
+  def htmlExport: InventoryHTMLExport = {
+    val exporter = new InventoryHTMLExporter(inventory)
+    exporter.generate()
+  }
+
   private def persistInventory(): Unit = {
     val json = Json.toJson(inventory)
     new PrintWriter(storagePath.toString) { write(Json.stringify(json)); close }
@@ -54,3 +59,5 @@ object InventoryItem {
 }
 
 case class InventoryItem(name: String, serialNumber: String, value: Float) {}
+
+case class InventoryHTMLExport(html: String)

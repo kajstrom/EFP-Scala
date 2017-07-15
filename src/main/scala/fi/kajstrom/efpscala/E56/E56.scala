@@ -1,5 +1,9 @@
 package fi.kajstrom.efpscala.E56
 
+import java.io.PrintWriter
+
+import fi.kajstrom.efpscala.Util.FilePath
+
 import scala.io.StdIn._
 
 object E56 extends App{
@@ -25,7 +29,7 @@ object E56 extends App{
   def runAction(action: String) : Unit = {
     action match {
         case "A" => addItem
-        case "H" => println("HTML")
+        case "H" => exportHTML
         case "C" => println("CSV")
         case "E" => System.exit(0)
     }
@@ -47,6 +51,14 @@ object E56 extends App{
         addItem
       }
     }
+  }
 
+  def exportHTML: Unit = {
+    val export = inventoryService.htmlExport
+    val exportLocation = FilePath.makeResourcePath("E56_html.html")
+
+    new PrintWriter(exportLocation) { write(export.html); close }
+
+    println(s"HTML file written to: $exportLocation")
   }
 }
