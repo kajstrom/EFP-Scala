@@ -30,7 +30,7 @@ object E56 extends App{
     action match {
         case "A" => addItem
         case "H" => exportHTML
-        case "C" => println("CSV")
+        case "C" => exportCSV
         case "E" => System.exit(0)
     }
 
@@ -60,5 +60,14 @@ object E56 extends App{
     new PrintWriter(exportLocation) { write(export.html); close }
 
     println(s"HTML file written to: $exportLocation")
+  }
+
+  def exportCSV: Unit = {
+    val export = inventoryService.csvExport
+    val exportLocation = FilePath.makeResourcePath("E56_csv.csv")
+
+    new PrintWriter(exportLocation) { write(export.csv); close }
+
+    println(s"CSV file written to: $exportLocation")
   }
 }

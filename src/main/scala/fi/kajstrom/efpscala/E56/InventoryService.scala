@@ -24,6 +24,11 @@ class InventoryService {
     exporter.generate()
   }
 
+  def csvExport: InventoryCSVExport = {
+    val exporter = new InventoryCSVExporter(inventory)
+    exporter.generate()
+  }
+
   private def persistInventory(): Unit = {
     val json = Json.toJson(inventory)
     new PrintWriter(storagePath.toString) { write(Json.stringify(json)); close }
@@ -61,3 +66,4 @@ object InventoryItem {
 case class InventoryItem(name: String, serialNumber: String, value: Float) {}
 
 case class InventoryHTMLExport(html: String)
+case class InventoryCSVExport(csv: String)
