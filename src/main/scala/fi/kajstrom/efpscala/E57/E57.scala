@@ -3,7 +3,8 @@ package fi.kajstrom.efpscala.E57
 import scala.io.StdIn.readLine
 
 object E57 extends App{
-  val game = new Game(Seq(Question("Wat?", Seq(Answer("Yes", false), Answer("No", false), Answer("68g", true)))))
+  val questionService = new QuestionService("E57_questions.json")
+  val game = new Game(questionService.getQuestions)
 
   game.start()
   promptQuestion()
